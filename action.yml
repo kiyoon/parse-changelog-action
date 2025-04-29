@@ -1,4 +1,4 @@
-name: Get changelog from CHANGELOG.md
+name: Parse CHANGELOG.md
 description: Parse the body of the changelog from CHANGELOG.md
 author: Kiyoon Kim
 
