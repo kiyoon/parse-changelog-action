@@ -18788,13 +18788,13 @@ var import_node_fs = __toESM(require("node:fs"));
 var core = __toESM(require_core());
 var byReferenceLinkForVersion = /^\[.*\]: https?:\/\/github.com\/.*\/.*\/compare\/.*\.\.\.\.*$/;
 async function main() {
-  const changelogPath = core.getInput("changelog-path");
+  const changelogFilePath = core.getInput("changelog-file-path");
   const targetVersion = core.getInput("version");
   let chglog = "";
   try {
-    chglog = await import_node_fs.default.promises.readFile(changelogPath, "utf8");
+    chglog = await import_node_fs.default.promises.readFile(changelogFilePath, "utf8");
   } catch (err) {
-    return core.setFailed(`Couldn't find a ${changelogPath}`);
+    return core.setFailed(`Couldn't find a ${changelogFilePath}`);
   }
   const lines = chglog.replace(/\r/g, "").split(`
 `);

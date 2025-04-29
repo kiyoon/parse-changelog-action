@@ -2,7 +2,7 @@
 
 ## 🚦 Usage
 
-When there is a commit following a specific format `chore: release vX.X.X`, this action will parse the `docs/CHANGELOG.md` file and create a release with the body of the specified version.
+When there is a commit following a specific format `chore: release vX.X.X`, this action will parse the `CHANGELOG.md` file and create a release with the body of the specified version.
 
 ```yml
 on:
@@ -11,7 +11,7 @@ on:
       - main
       - master
     paths:
-      - 'docs/CHANGELOG.md'
+      - 'CHANGELOG.md'
 
 jobs:
   release:
@@ -39,9 +39,9 @@ jobs:
 
       - name: Parse CHANGELOG.md to get release notes
         id: parse_changelog
-        uses: deargen/workflows/actions/parse-changelog@master
+        uses: kiyoon/parse-changelog-action@v1
         with:
-          changelog-path: docs/CHANGELOG.md
+          changelog-file-path: CHANGELOG.md
           version: ${{ steps.parse_commit.outputs.RELEASE_VERSION }}
 
       - name: Create Release

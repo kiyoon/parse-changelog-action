@@ -3,7 +3,7 @@ description: Parse the body of the changelog from CHANGELOG.md
 author: Kiyoon Kim
 
 inputs:
-  changelog-path:
+  changelog-file-path:
     description: Path to CHANGELOG.md
   version:
     description: Version to get the body of
