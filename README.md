@@ -4,6 +4,8 @@
 
 When there is a commit following a specific format `chore: release vX.X.X`, this action will parse the `CHANGELOG.md` file and create a release with the body of the specified version.
 
+It's good with [kiyoon/changelog-action](https://github.com/kiyoon/changelog-action) that generates the `CHANGELOG.md` file.
+
 ```yml
 on:
   push:
