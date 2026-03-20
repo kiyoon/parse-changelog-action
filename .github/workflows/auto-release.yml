@@ -1,12 +1,5 @@
-# Parse CHANGELOG.md and get the body of a specific version
+name: Auto-release following a release commit
 
-## 🚦 Usage
-
-When there is a commit following a specific format `chore: release vX.X.X`, this action will parse the `CHANGELOG.md` file and create a release with the body of the specified version.
-
-It's good with [kiyoon/changelog-action](https://github.com/kiyoon/changelog-action) that generates the `CHANGELOG.md` file.
-
-```yml
 on:
   push:
     branches:
@@ -24,10 +17,6 @@ jobs:
 
       - name: Parse commit message to get version
         id: parse_commit
-        env:
-          # Avoid script injection by using an environment variable
-          # The `${{ ... }}` syntax is like a preprocessor for the workflow, thus it is unsafe to use directly in the script
-          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         run: |
           # Commit message must be in the format of
           # "chore: release vX.X"
@@ -38,6 +27,10 @@ jobs:
             exit 1
           fi
           echo "RELEASE_VERSION=$VERSION" >> "$GITHUB_OUTPUT"
+
+        env:
+          # Avoid script injection by using an environment variable
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
 
       - name: Parse CHANGELOG.md to get release notes
         id: parse_changelog
@@ -53,14 +46,3 @@ jobs:
           tag_name: ${{ steps.parse_commit.outputs.RELEASE_VERSION }}
           name: ${{ steps.parse_commit.outputs.RELEASE_VERSION }}
           body: ${{ steps.parse_changelog.outputs.body }}
-```
-
-## 🚧 Maintenance Note 🚧
-
-```bash
-brew install bun  # install package manager
-bun install       # install dependencies
-
-# IMPORTANT: make sure to build the project when you change the code
-bun run build
-```

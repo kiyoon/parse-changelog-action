@@ -18785,7 +18785,7 @@ var require_core = __commonJS((exports2) => {
 
 // src/index.ts
 var import_node_fs = __toESM(require("node:fs"));
-var core = __toESM(require_core());
+var core = __toESM(require_core(), 1);
 var byReferenceLinkForVersion = /^\[.*\]: https?:\/\/github.com\/.*\/.*\/compare\/.*\.\.\.\.*$/;
 async function main() {
   const changelogFilePath = core.getInput("changelog-file-path");

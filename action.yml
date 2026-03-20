@@ -13,7 +13,7 @@ outputs:
     description: The body of the changelog
 
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'dist/index.js'
 
 branding:
